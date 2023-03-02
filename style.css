@@ -5,3 +5,12 @@
     max-width: 1600px;
     margin: auto;
 }
+li, .data, .cal-icon{
+    color: #585858;
+}
+#show-details{
+    background: #FEF7F7;
+}
+#show-details:hover{
+    cursor: pointer;
+}
