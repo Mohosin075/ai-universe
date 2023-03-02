@@ -1,20 +1,33 @@
 // all data load
 const spinner = document.getElementById('spinner');
+let allData;
 const loadAllData = async() =>{
     spinner.classList.remove('d-none')
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
     const data = await res.json();
-    showAllData(data.data.tools);
+    allData = data.data.tools;
+    showAllData(allData.slice(0,6));
 }
 
 // show all data
 
 const showAllData=(data)=>{
     const cardContainer = document.getElementById('card-container');
+    cardContainer.innerHTML = '';
+    const seeMore = document.getElementById('sew-more');
+    const dataLength = data.length;
+    // see more button hide and display
+    if(dataLength < 6){
+        seeMore.classList.add('d-none');
+    }else if(dataLength === 6){
+        seeMore.classList.remove('d-none');
+    }else{
+        seeMore.classList.add('d-none')
+    }
+    console.log(allData);
     data.forEach(item => {
         const {name, image, published_in,features} = item;
-        console.log(item);
         spinner.classList.add('d-none')
         cardContainer.innerHTML +=`
         <div class="col">
