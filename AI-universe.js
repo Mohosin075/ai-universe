@@ -1,5 +1,7 @@
 // all data load
+const spinner = document.getElementById('spinner');
 const loadAllData = async() =>{
+    spinner.classList.remove('d-none')
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
     const data = await res.json();
@@ -13,6 +15,7 @@ const showAllData=(data)=>{
     data.forEach(item => {
         const {name, image, published_in,features} = item;
         console.log(item);
+        spinner.classList.add('d-none')
         cardContainer.innerHTML +=`
         <div class="col">
                       <div class="card h-100 p-3">

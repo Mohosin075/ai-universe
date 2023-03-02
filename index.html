@@ -25,6 +25,18 @@
                 <button class="btn btn-danger my-2">Sort By Date</button>
             </div>
             <div class="mt-4">
+                <!-- data load spinner -->
+                <div class="text-center my-5 py-5 d-none" id="spinner">
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                </div>
                 <div class="row row-cols-1 row-cols-md-3 g-4" id="card-container">
                     <!-- added all card here -->
                   </div>
