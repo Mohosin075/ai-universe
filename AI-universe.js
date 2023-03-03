@@ -68,11 +68,20 @@ const loadModalData=async(id)=>{
     showModalData(data.data);
 }
 
+const hide = document.querySelector('.hidden');
+
+function nullSolve(nul){
+    console.log(nul);
+    console.log(hide);
+}
+
+// let featureContainer;
 
 // show all modal data
 const showModalData = (data)=>{
-    const {tool_name,image_link,description,pricing,input_output_examples,accuracy} = data;
-    console.log(pricing);
+    console.log(data);
+    const {image_link,description,pricing,input_output_examples,accuracy,features,integrations} = data;
+    
     const modalContainer = document.getElementById('modal-container');
     modalContainer.innerHTML = '';
     modalContainer.innerHTML = `
@@ -97,14 +106,13 @@ const showModalData = (data)=>{
           <div class="d-lg-flex gx-lg-3 justify-content-between">
             <div>
               <h5 class="my-3 fs-4 fw-bold">Feature</h5>
-              <ul>
-                <li>Customizable responses responses</li>
-              </ul>
+                <ul id="feature-container">
+                </ul>
             </div>
             <div>
               <h5 class="my-3 fs-4 fw-bold">Integrations</h5>
               <ul>
-                <li>Customizable responses</li>
+                <li>int</li>
               </ul>
             </div>
           </div>
@@ -114,7 +122,7 @@ const showModalData = (data)=>{
     <div class="col">
       <div class="card h-100">
         <img src="${image_link[0]}" class="card-img-top" alt="...">
-        <button class="btn btn-danger border-0 position-absolute top-0 my-2" style="right: 8px; " id="hide">${accuracy.score == null  ? "not available": accuracy.score + '% accuracy'}</button>
+        <button class="btn btn-danger border-0 position-absolute top-0 my-2" style="right: 8px; " id="hide">${accuracy.score == null  ?  'not available': accuracy.score + '% accuracy'}</button>
         <div class="card-body">
           <h5 class="card-title fw-bold fs-4">${input_output_examples == null ? "not available" : input_output_examples[0].input}</h5>
           <p class="moda-desc fs-6">${input_output_examples == null ? "not available" : input_output_examples[0].output}</p>
@@ -122,5 +130,23 @@ const showModalData = (data)=>{
       </div>
     </div>
     `
-    modalSpinner.classList.add('d-none')
-}
+    modalSpinner.classList.add('d-none');
+
+    
+    // hide accuracy button
+    if(accuracy.score == null){
+        const hide = document.getElementById('hide');
+        hide.classList.add('d-none')
+     }
+    //  dynamic feature
+     const featureContainer = document.getElementById('feature-container');
+     showFeatureData(features, featureContainer);
+     function showFeatureData(features,featureContainer){
+         for(const feature in features){
+            const item = (features[feature].feature_name);
+            featureContainer.innerHTML +=`
+            <li>${item}</li>
+            `
+        }
+     }
+    }
