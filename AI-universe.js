@@ -28,7 +28,6 @@ const showAllData=(data)=>{
     console.log(allData);
     data.forEach(item => {
         const {name, image, published_in,features} = item;
-        spinner.classList.add('d-none')
         cardContainer.innerHTML +=`
         <div class="col">
                       <div class="card h-100 p-3">
@@ -50,13 +49,14 @@ const showAllData=(data)=>{
                                 </div>
                             </div>
                             <div>
-                                <i class="fa-solid fa-arrow-right-long text-danger p-3 rounded-circle pointer-event" id="show-details"></i>
+                                <i class="fa-solid fa-arrow-right-long text-danger p-3 rounded-circle pointer-event" id="show-details" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
                             </div>
                         </div>
                       </div>
                     </div>
         ` 
     });
+    spinner.classList.add('d-none')
 }
 
 // const features=(feature)=>{

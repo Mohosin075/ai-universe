@@ -5,7 +5,7 @@
     max-width: 1600px;
     margin: auto;
 }
-li, .data, .cal-icon{
+li, .data, .cal-icon, .moda-desc{
     color: #585858;
 }
 #show-details{
@@ -13,4 +13,7 @@ li, .data, .cal-icon{
 }
 #show-details:hover{
     cursor: pointer;
+}
+.modal-card-bg{
+    background: rgba(235, 87, 87, 0.05);
 }
