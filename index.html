@@ -16,8 +16,7 @@
     <!-- custom css link -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
+<body  onload="loadAllData()">
     <main class="main container">
         <section class="my-4">
             <div class="text-center">
@@ -30,7 +29,7 @@
                     <div class="spinner-grow text-primary" role="status">
                         <span class="visually-hidden">Loading...</span>
                       </div>
-                      <div class="spinner-grow text-danger" role="status">
+                      <div class="spinner-grow text-danger " role="status">
                         <span class="visually-hidden">Loading...</span>
                       </div>
                       <div class="spinner-grow text-warning" role="status">
@@ -47,53 +46,29 @@
             </div>
         </section>
         <!-- modal -->
-        <section>
-          
+        
           <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" style="max-width: 80%;" role="document">
-                <div class="modal-content position-relative">
+              <div class="modal-dialog modal-dialog-centered mx-auto position-relative "style="max-width: 90%;" role="document">
+                <div class="modal-content ">
                   <div class="modal-header border-0">
-                    <button class="bg-danger rounded-circle border-0 text-white position-absolute" data-bs-dismiss="modal"  style="width: 40px; height: 40px; top: -20px; right: -20px;">X</button>
+                    <button class="bg-danger rounded-circle border-0 text-white position-absolute" data-bs-dismiss="modal"  style="width: 40px; height: 40px; top: -20px; right: -20px;z-index: 100;">X</button>
                   </div>
                   <div class="modal-body ">
                     <div>
-                      <div class="row row-cols-1 row-cols-md-2 g-4">
-                        <div class="col">
-                          <div class="card h-100 modal-card-bg">
-                            <div class="card-body">
-                              <h5 class="card-title fw-bold fs-4">ChatGPT is an AI-powered </h5>
-                              <div class="d-lg-flex justify-content-between gap-lg-4 text-center">
-                                <div class="col d-block w-lg-25 mb-2 p-4 bg-white rounded">$10/ month Basic</div>
-                                <div class="col d-block w-lg-25 mb-2 p-4 bg-white rounded">$10/ month Basic</div>
-                                <div class="col d-block w-lg-25 mb-2 p-4 bg-white rounded">$10/ month Basic</div>
-                              </div>
-                              <div class="d-lg-flex gap-lg-2">
-                                <div>
-                                  <h5 class="my-3 fs-4 fw-bold">Feature</h5>
-                                  <ul>
-                                    <li>Customizable responses responses</li>
-                                  </ul>
-                                </div>
-                                <div>
-                                  <h5 class="my-3 fs-4 fw-bold">Integrations</h5>
-                                  <ul>
-                                    <li>Customizable responses</li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
+                      <div class="text-center my-5 py-5 d-none" id="modal-spinner">
+                        <div class="spinner-grow text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
                           </div>
-                        </div>
-                        <div class="col">
-                          <div class="card h-100">
-                            <img src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title fw-bold fs-4">Hi, how are you doing today? </h5>
-                              <p class="moda-desc fs-6">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
+                          <div class="spinner-grow text-danger" role="status">
+                            <span class="visually-hidden">Loading...</span>
                           </div>
-                        </div>
+                          <div class="spinner-grow text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                    </div>
+                      <div class="row row-cols-1 row-cols-md-2 g-4" id="modal-container">
+                        <!-- modal data here -->
                       </div>
                     </div>
                   </div>
