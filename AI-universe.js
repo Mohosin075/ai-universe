@@ -81,7 +81,6 @@ function nullSolve(nul){
 const showModalData = (data)=>{
     console.log(data);
     const {image_link,description,pricing,input_output_examples,accuracy,features,integrations} = data;
-    
     const modalContainer = document.getElementById('modal-container');
     modalContainer.innerHTML = '';
     modalContainer.innerHTML = `
@@ -91,15 +90,15 @@ const showModalData = (data)=>{
           <h5 class="card-title fw-bold fs-4">${description}</h5>
           <div class="d-lg-flex justify-content-between justify-items-center gap-lg-4 text-center">
           <div class="col d-block w-lg-25 mb-2 p-4 bg-white rounded fw-bold text-success text-center"><span>
-            ${pricing == null ? "not available" :  pricing[0].price === "0" || pricing[0].price === "No cost"? "Free of cost" : pricing[0].price}
+            ${pricing == null ? `Free of Cost <br> Basic`  :  pricing[0].price === "0" || pricing[0].price === "No cost"? "Free of cost" : pricing[0].price}
           </span><br> <span>${pricing == null ? "" :  pricing[0].plan === "0" || pricing[0].plan === "Free"? "Basic" : pricing[0].plan}</span>
           </div>
           <div class="col d-block w-lg-25 mb-2 p-4 bg-white rounded fw-bold text-warning text-center"><span>
-            ${pricing == null ? "not available" :  pricing[1].price === "0" || pricing[1].price === "No cost"? "Free of cost" : pricing[1].price}
+            ${pricing == null ? `Free of Cost <br> Pro` :  pricing[1].price === "0" || pricing[1].price === "No cost"? "Free of cost" : pricing[1].price}
           </span><br> <span>${pricing == null ? "" :  pricing[1].plan === "0" || pricing[1].plan === "Free"? "Basic" : pricing[1].plan}</span>
           </div>
           <div class="col d-block w-lg-25 mb-2 p-4 bg-white rounded text-danger fw-bold text-center"><span>
-            ${pricing == null ? "not available" :  pricing[2].price === "0" || pricing[2].price === "No cost"? "Free of cost" : pricing[2].price}
+            ${pricing == null ? `Free of Cost <br> Enterprise` :  pricing[2].price === "0" || pricing[2].price === "No cost"? "Free of cost" : pricing[2].price}
           </span><br> <span>${pricing == null ? "" :  pricing[2].plan === "0" || pricing[1].plan === "Free"? "Basic" : pricing[2].plan}</span>
           </div>
           </div>
@@ -111,8 +110,8 @@ const showModalData = (data)=>{
             </div>
             <div>
               <h5 class="my-3 fs-4 fw-bold">Integrations</h5>
-              <ul>
-                <li>int</li>
+              <ul id="integration-container" class="text-start">
+              
               </ul>
             </div>
           </div>
@@ -123,9 +122,9 @@ const showModalData = (data)=>{
       <div class="card h-100">
         <img src="${image_link[0]}" class="card-img-top" alt="...">
         <button class="btn btn-danger border-0 position-absolute top-0 my-2" style="right: 8px; " id="hide">${accuracy.score == null  ?  'not available': accuracy.score + '% accuracy'}</button>
-        <div class="card-body">
-          <h5 class="card-title fw-bold fs-4">${input_output_examples == null ? "not available" : input_output_examples[0].input}</h5>
-          <p class="moda-desc fs-6">${input_output_examples == null ? "not available" : input_output_examples[0].output}</p>
+        <div class="card-body text-center">
+          <h5 class="card-title fw-bold fs-4">${input_output_examples == null ? "Can you give any example?" : input_output_examples[0].input}</h5>
+          <p class="moda-desc fs-6">${input_output_examples == null ? "No! Not Yet! Take a break!!!" : input_output_examples[0].output}</p>
         </div>
       </div>
     </div>
@@ -138,7 +137,7 @@ const showModalData = (data)=>{
         const hide = document.getElementById('hide');
         hide.classList.add('d-none')
      }
-    //  dynamic feature
+    //  dynamic feature data load and set
      const featureContainer = document.getElementById('feature-container');
      showFeatureData(features, featureContainer);
      function showFeatureData(features,featureContainer){
@@ -149,4 +148,21 @@ const showModalData = (data)=>{
             `
         }
      }
+
+    //  dynamic integration data load and set
+    const integrationContainer = document.getElementById('integration-container');
+    showIntegrationData(integrations, integrationContainer);
+    function showIntegrationData(integration, integrationContainer){
+        if(integration==null){
+            integrationContainer.innerHTML = `
+            <p class="pe-4 fs-3">No data Found</p>
+            `
+            return;
+        }
+        integration.forEach(data=>{
+            integrationContainer.innerHTML += `
+            <li>${data}</li>
+            `
+        })
+    }
     }
