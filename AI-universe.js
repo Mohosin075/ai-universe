@@ -58,6 +58,22 @@ const showAllData=(data)=>{
     spinner.classList.add('d-none')
 }
 
+// sort by data
+
+const sortData=(allData)=>{
+  allData.sort((a,b) => new Date(b.published_in) - new Date(a.published_in));
+  return allData;
+}
+
+document.getElementById('sort-btn').addEventListener('click', function(){
+  const newSortData = sortData(allData.slice(0,6))
+    showAllData(newSortData)
+    document.getElementById('see-more').addEventListener('click', function(){
+      const newSortData = sortData(allData);
+      showAllData(newSortData);
+    })
+})
+
 // load modal data
 const modalSpinner = document.getElementById('modal-spinner')
 const loadModalData=async(id)=>{
@@ -75,11 +91,9 @@ function nullSolve(nul){
     console.log(hide);
 }
 
-// let featureContainer;
 
 // show all modal data
 const showModalData = (data)=>{
-    console.log(data);
     const {image_link,description,pricing,input_output_examples,accuracy,features,integrations} = data;
     const modalContainer = document.getElementById('modal-container');
     modalContainer.innerHTML = '';
@@ -124,7 +138,7 @@ const showModalData = (data)=>{
         <button class="btn btn-danger border-0 position-absolute top-0 my-2" style="right: 8px; " id="hide">${accuracy.score == null  ?  'not available': accuracy.score + '% accuracy'}</button>
         <div class="card-body text-center">
           <h5 class="card-title fw-bold fs-4">${input_output_examples == null ? "Can you give any example?" : input_output_examples[0].input}</h5>
-          <p class="moda-desc fs-6">${input_output_examples == null ? "No! Not Yet! Take a break!!!" : input_output_examples[0].output}</p>
+          <p class="moda-desc fs-6" id="input-output">${input_output_examples == null ? "No! Not Yet! Take a break!!!" : input_output_examples[0].output}</p>
         </div>
       </div>
     </div>
@@ -165,4 +179,4 @@ const showModalData = (data)=>{
             `
         })
     }
-    }
+}
