@@ -66,10 +66,9 @@ const sortData=(allData)=>{
 }
 
 document.getElementById('sort-btn').addEventListener('click', function(){
-  const newSortData = sortData(allData.slice(0,6))
-    showAllData(newSortData)
+  const newSortData = sortData(allData)
+    showAllData(newSortData.slice(0,6))
     document.getElementById('see-more').addEventListener('click', function(){
-      const newSortData = sortData(allData);
       showAllData(newSortData);
     })
 })
@@ -135,7 +134,7 @@ const showModalData = (data)=>{
     <div class="col">
       <div class="card h-100">
         <img src="${image_link[0]}" class="card-img-top" alt="...">
-        <button class="btn btn-danger border-0 position-absolute top-0 my-2" style="right: 8px; " id="hide">${accuracy.score == null  ?  'not available': accuracy.score + '% accuracy'}</button>
+        <button class="btn btn-danger border-0 position-absolute top-0 my-2" style="right: 8px; " id="hide">${accuracy.score == null  ?  'not available': (accuracy.score)*100 + '% accuracy'}</button>
         <div class="card-body text-center">
           <h5 class="card-title fw-bold fs-4">${input_output_examples == null ? "Can you give any example?" : input_output_examples[0].input}</h5>
           <p class="moda-desc fs-6" id="input-output">${input_output_examples == null ? "No! Not Yet! Take a break!!!" : input_output_examples[0].output}</p>
